@@ -35,13 +35,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.get("/")
+@app.get("/list-dieu-luat")
 async def root():
     select_data_query = "SELECT * FROM tbldieuluat"
     cursor.execute(select_data_query)
     result = cursor.fetchall()
     rows_as_dict = [{"id": row[0], "tieuDe": row[1]} for row in result]
     return rows_as_dict
+
 
 @app.get("/thacmac/{thac_mac_cha_value}")
 async def get_thac_mac(thac_mac_cha_value: str):
